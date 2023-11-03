@@ -11,6 +11,8 @@ Efficient inventory management, optimal pricing strategies, and strategic produc
 Big Mart Sales data
 https://datahack.analyticsvidhya.com/contest/practice-problem-big-mart-sales-iii/
 
+For this dataset, there were 8523 rows and 12 columns.
+
 
 ### Methods 
 #### Data Preparation
@@ -18,8 +20,7 @@ https://datahack.analyticsvidhya.com/contest/practice-problem-big-mart-sales-iii
 - 17.17% of data is missing for 'Item Weight'. Null values are missing at random. Decided to use Median to fill Nulls.
 - 28.28% of data is missing for 'Outlet Size'. Null values are missing at random. Decided to use 'MISSING' to fill Nulls.
 - Fixed Inconsistency in 'Item Fat Content'.
-
-
+- For ordinal column 'Outlet_Size', categories order=NA,SMALL,MEDIUM,HIGH
 
 
 ## Results
@@ -34,9 +35,9 @@ From the graph, Product store sales and Max retail price have a positive correla
 
 ![Count of product by categories with LowFat:Regular](https://github.com/Qisam0322/Prediction-of-Product-Sales/assets/144630065/cc23b880-7f9a-4352-8192-013c85e6cb20)
 
-The count plot provides valuable insights into the distribution of product counts within each category, groupby by LowFat and Regular. Overall, the company tends to stock a higher quantity of low-fat products compared to regular ones. However, it's noteworthy that in the 'meat' and 'breakfast' categories, the company maintains a larger inventory of regular products as opposed to low-fat alternatives.
+The count plot provides valuable insights on the distribution of product counts within each category, groupby by LowFat and Regular. Overall, the company tends to stock a higher quantity of low-fat products compared to regular ones. However, it's noteworthy that in the 'meat' and 'breakfast' categories, the company maintains a larger inventory of regular products as opposed to low-fat alternatives.
 
-#### Visual 3 Product Count by Categories
+### Visual 3 Product Count by Categories
 
 ![Product count by categories](https://github.com/Qisam0322/Prediction-of-Product-Sales/assets/144630065/9c9eb747-1b64-47fc-bd21-d1a2d2d3c913)
 
@@ -46,39 +47,51 @@ The count plot above shows the product counts for each category. 'Fruit and vege
 
 ### Machine Learning Using the Following Models:
     - Linear Regression Model
-    - Decision Tree Regressor Model
-    - Tuned Decision Tree Regressor Model
     - Random Forest Regressor Model
     - Tuned Random Forest Regressor Model
     
 ## Models Evaluated & Results
 
 - Linear Regression Model (Testing Set):
-  - R^2: -1.442820300359156e+22
-  - MAE: 2065461996953278.5
-  - MSE: 6.752807031244359e+31
-  - RMSE: 8217546489825512.0
-
-- Decision Tree Regressor Model (Testing Set):
-  - R^2: 0.186
-  - MAE: 41512.219
-  - MSE: 3809835283.133
-  - RMSE: 61723.863
-
-- Tuned Decision Tree Regressor Model (Testing Set):
-  - R^2: 0.462
-  - MAE: 34610.985
-  - MSE: 2517885802.26
-  - RMSE: 50178.539
+ - MAE = 804.048
+ - MSE = 1,194,230.406
+ - RMSE = 1,092.808
+ - R^2 = 0.567
 
 - Random Forest Regressor Model (Testing Set):
-  - R^2: 0.56
-  - MAE: 31872.362
-  - MSE: 2061515521.69
-  - RMSE: 45403.915
+ - MAE = 767.081
+ - MSE = 1,216,212.220
+ - RMSE = 1,102.820
+ - R^2 = 0.559
 
 - Tuned Random Forest Regressor Model (Testing Set):
-  - R^2: 0.563
-  - MAE: 31998.943
-  - MSE: 2044264641.827
-  - RMSE: 45213.545
+ - MAE = 728.426
+ - MSE = 1,096,412.715
+ - RMSE = 1,047.097
+ - R^2 = 0.603
+
+-Overall I would recommend using the tuned random forest model for prediction because the model has a higher R2 value on test data(R^2=0.603 rf > R^2=0.559 lr) and the model is less underfit than the default random forest model and less overfit than the linear regression model. 
+
+-The tuned random forest model on test data has a R-squared value of 0.603 indicating that about 60.3% of the variance in 'Outlet Sales' can be explained by the features we're using in our model. The model does a reasonably good job at predicting outlet sales based on the features we provided. However, there are still other factors not included in our model that affect the target. So, while it's decent, there's room for improvement.
+
+-The tuned random forest model on test data has a RMSE of 1,047.097 indicating on average our prediction is off by about $1,047.
+RMSE tends to penalize larger errors more. Test data has a RMSE of 1,047.097 that is higher than its MAE of 728.426 suggests that there might be some predictions that are quite far off. 
+
+## Recommendations:
+### For Store product supplier:
+
+- Regular seafood products have the highest average product store sales.
+- MRP has a moderate positive correlation with Store Product sales. 
+- 50% of the product sales are around $1000 to $3000 with the median being around $1900. 25% of product sales fall between $0 to $1000.
+- OUTLET027 has the higest average store product sales.
+- Supermarket Type3 has the highest average store product sales.
+
+## Limitations & Next Steps
+
+Store product supplier can use the insights from the visuals to make decisions on product replacement, inventory management, and refine pricing strategies to maximize product sales. 
+
+### For further information
+
+
+For any additional questions, please contact **qi.sam0322@gmail.com**
+
